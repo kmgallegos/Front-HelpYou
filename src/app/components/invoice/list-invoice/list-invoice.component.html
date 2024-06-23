@@ -1,0 +1,37 @@
+<div class="container">
+    <div class="title-container"><h1 class="title">Lista de Facturas</h1></div>
+     
+    <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+        <!-- Id Column -->
+        <ng-container matColumnDef="Id">
+            <th mat-header-cell *matHeaderCellDef>Código</th>
+            <td mat-cell *matCellDef="let element">{{ element.idInvoice }}</td>
+        </ng-container>
+
+        <ng-container matColumnDef="dateInvoice">
+            <th mat-header-cell *matHeaderCellDef>Fecha de Factura</th>
+            <td mat-cell *matCellDef="let element">{{ element.dateInvoice | date }}</td>
+        </ng-container>
+
+        <ng-container matColumnDef="totalInvoice">
+            <th mat-header-cell *matHeaderCellDef>Total Factura</th>
+            <td mat-cell *matCellDef="let element">{{ element.totalInvoice }}</td>
+        </ng-container>
+
+        <ng-container matColumnDef="idusers">
+            <th mat-header-cell *matHeaderCellDef>Nombre de Usuario</th>
+            <td mat-cell *matCellDef="let element">
+              {{ element.user?.username}}
+            </td>
+        </ng-container>
+
+        <!-- Header Row -->
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        
+        <!-- Data Rows -->
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table>
+
+    <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]" showFirstLastButtons></mat-paginator>
+</div>
+
