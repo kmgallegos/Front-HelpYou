@@ -1,0 +1,77 @@
+<div class="container">
+    <div class="title-container"><h2 class="title">Lista de Suscripciones</h2></div>
+    <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+        <!-- Position Column -->
+        <ng-container matColumnDef="IdSuscription">
+            <th mat-header-cell *matHeaderCellDef>ID SUSCRIPCIÓN</th>
+            <td mat-cell *matCellDef="let element">{{ element.idSubscription }}</td>
+        </ng-container>
+    
+        <!-- DataInicio Column -->
+        <ng-container matColumnDef="DataInicio">
+            <th mat-header-cell *matHeaderCellDef>INICIO</th>
+            <td mat-cell *matCellDef="let element">{{ element.dataStartSubscription }}</td>
+        </ng-container>
+    
+        <!-- DataFin Column -->
+        <ng-container matColumnDef="DataFin">
+            <th mat-header-cell *matHeaderCellDef>FIN</th>
+            <td mat-cell *matCellDef="let element">{{ element.subscriptionEndDate }}</td>
+        </ng-container>
+  
+        <!-- Tipo Column -->
+        <ng-container matColumnDef="Tipo">
+            <th mat-header-cell *matHeaderCellDef>TIPO</th>
+            <td mat-cell *matCellDef="let element">{{ element.typeSubscription }}</td>
+        </ng-container>
+  
+        <!-- Estado Column -->
+        <ng-container matColumnDef="Estado">
+            <th mat-header-cell *matHeaderCellDef>ESTADO</th>
+            <td mat-cell *matCellDef="let element">{{ element.statusSubscription }}</td>
+        </ng-container>
+  
+        <!-- Precio Column -->
+        <ng-container matColumnDef="Precio">
+            <th mat-header-cell *matHeaderCellDef>COSTO</th>
+            <td mat-cell *matCellDef="let element">{{ element.priceSubscription }}</td>
+        </ng-container>
+       
+        <!-- idusers Column -->
+        <ng-container matColumnDef="idusers">
+            <th mat-header-cell *matHeaderCellDef>NOMBRE DE USUARIO</th>
+            <td mat-cell *matCellDef="let element">{{ element.user.username }}</td>
+        </ng-container>
+  
+        <!-- idservice Column -->
+        <ng-container matColumnDef="idservice">
+            <th mat-header-cell *matHeaderCellDef>NOMBRE DEL SERVICIO</th>
+            <td mat-cell *matCellDef="let element">{{ element.service.nameService }}</td>
+        </ng-container>
+  
+        <!-- Edit Action Column -->
+        <ng-container matColumnDef="accion01" >
+          <th mat-header-cell *matHeaderCellDef>EDITAR</th>
+          <td mat-cell *matCellDef="let element">
+              <button mat-raised-button color="primary" *ngIf="isADMIN() || isMOD()" [routerLink]="['/suscriptions/ediciones', element.idSubscription]">  <!-- Ruta corregida -->
+                  <mat-icon>edit</mat-icon>
+              </button>
+          </td>
+        </ng-container>
+  
+        <!-- Delete Action Column -->
+        <ng-container matColumnDef="accion02">
+            <th mat-header-cell *matHeaderCellDef>ELIMINAR</th>
+            <td mat-cell *matCellDef="let element">
+                <button mat-raised-button color="primary" (click)="delete(element.idSubscription)">
+                    <mat-icon>delete_sweep</mat-icon>
+                </button>
+            </td>
+        </ng-container>
+        
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+    </table>
+    <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]" showFirstLastButtons></mat-paginator>
+  </div>
+  

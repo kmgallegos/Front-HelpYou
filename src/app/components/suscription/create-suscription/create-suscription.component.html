@@ -1,0 +1,88 @@
+<div class="title-container"><h1 class="title">REGISTRO DE SUSCRIPCIONES</h1></div>
+<div class="container" style="text-align: center"> 
+  <form [formGroup]="form" (submit)="aceptar()" class="example-form">
+    
+    <mat-form-field class="example-full-width" *ngIf="edicion">
+      <mat-label>Código</mat-label>
+      <input matInput placeholder="Código" formControlName="IdSus" />      
+    </mat-form-field>
+
+    <br/>
+
+    <mat-form-field>
+      <mat-select placeholder="ingrese usuario" formControlName="username">
+        <mat-option *ngFor="let c of listarUser" [value]="c.id">
+          {{ c.username }}
+        </mat-option>
+      </mat-select>
+      <mat-error *ngIf="form.get('username')?.hasError('required')">El usuario es obligatorio.</mat-error>
+    </mat-form-field>
+
+    <br/>
+
+    <mat-form-field>
+      <mat-select placeholder="ingrese servicio" formControlName="nameservice">
+        <mat-option *ngFor="let c of listarService" [value]="c.idService">
+          {{ c.nameService }}
+        </mat-option>
+      </mat-select>
+      <mat-error *ngIf="form.get('nameservice')?.hasError('required')">El servicio es obligatorio.</mat-error>
+    </mat-form-field>
+
+    <br/>
+
+    <mat-form-field>
+      <input matInput placeholder="Tipo de suscripción" formControlName="tipo">
+      <mat-error *ngIf="form.get('tipo')?.hasError('required')">Casilla obligatoria.</mat-error>  
+    </mat-form-field>
+
+    <br/>
+
+    <mat-form-field>
+      <mat-label> ESTADO </mat-label>
+      <mat-select placeholder="Inserte estado" formControlName="estado">
+        <mat-option *ngFor="let m of estado" [value]="m.value">
+          {{ m.viewValue }}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <br/>
+
+    <mat-form-field>
+      <input matInput placeholder="Precio de suscripción" formControlName="cost">
+      <mat-error *ngIf="form.get('cost')?.hasError('required')">Casilla obligatoria.</mat-error>  
+    </mat-form-field>
+
+    <br/>
+
+    <mat-form-field appearance="fill" class="example-full-width">
+      <input
+        matInput
+        placeholder="Ingrese fecha inicio"
+        [matDatepicker]="picker"
+        formControlName="fechaInicio"
+      />
+      <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+      <mat-datepicker #picker></mat-datepicker>
+      <mat-error *ngIf="form.get('fechaInicio')?.hasError('required')">La fecha es obligatoria.</mat-error>
+    </mat-form-field>
+    <br/>
+    <mat-form-field appearance="fill" class="example-full-width">
+      <input
+        matInput
+        placeholder="Ingrese fecha fin"
+        [matDatepicker]="pickerFin"
+        formControlName="fechaFin"
+      />
+      <mat-datepicker-toggle matIconSuffix [for]="pickerFin"></mat-datepicker-toggle>
+      <mat-datepicker #pickerFin></mat-datepicker>
+      <mat-error *ngIf="form.get('fechaFin')?.hasError('required')">La fecha es obligatoria.</mat-error>
+    </mat-form-field>
+
+    <br/>
+    <br/>
+    <button mat-raised-button color="primary">Aceptar</button>
+
+  </form>
+</div>

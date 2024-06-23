@@ -1,0 +1,51 @@
+<div class="container">
+  <div class="title-container"><h2 class="title">Lista de Counselings</h2></div>
+  <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+    <ng-container matColumnDef="idCounseling">
+      <th mat-header-cell *matHeaderCellDef>ID</th>
+      <td mat-cell *matCellDef="let element">{{ element.idCounseling }}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="meetingDateCounseling">
+      <th mat-header-cell *matHeaderCellDef>Fecha de Reunión</th>
+      <td mat-cell *matCellDef="let element">{{ element.meetingDateCounseling | date:'shortDate' }}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="meetingTimeCounseling">
+      <th mat-header-cell *matHeaderCellDef>Hora de Reunión</th>
+      <td mat-cell *matCellDef="let element">{{ element.meetingTimeCounseling }}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="commentCounseling">
+      <th mat-header-cell *matHeaderCellDef>Comentario</th>
+      <td mat-cell *matCellDef="let element">{{ element.commentCounseling }}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="user">
+      <th mat-header-cell *matHeaderCellDef>Usuario</th>
+      <td mat-cell *matCellDef="let element">{{ element.user?.username }}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="accion01">
+      <th mat-header-cell *matHeaderCellDef>Actualizar</th>
+      <td mat-cell *matCellDef="let element">
+        <button mat-raised-button color="primary" [routerLink]="['/counselings/ediciones', element.idCounseling]">
+          <mat-icon>edit</mat-icon>
+        </button>
+      </td>
+    </ng-container>
+
+    <ng-container matColumnDef="accion02">
+      <th mat-header-cell *matHeaderCellDef>Eliminar</th>
+      <td mat-cell *matCellDef="let element">
+        <button mat-raised-button color="primary" (click)="eliminar(element.idCounseling)">
+          <mat-icon>delete_sweep</mat-icon>
+        </button>
+      </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+  </table>
+  <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]" showFirstLastButtons></mat-paginator>
+</div>
