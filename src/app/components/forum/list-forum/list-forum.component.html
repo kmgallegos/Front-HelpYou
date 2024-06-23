@@ -1,0 +1,42 @@
+<div class="container">
+  <div class="title-container">
+    <h1>LISTA DE FOROS</h1>
+  </div>
+
+  <div class="card-container" >
+    <mat-card *ngFor="let element of dataSource.data" class="cards">
+      <mat-card-header>
+        <mat-card-title>{{ element.nameForum }}</mat-card-title>
+      </mat-card-header>
+      <mat-card-content>
+        <p>CÓDIGO DEL FORO: {{ element.idForum }}</p>
+        <p>DESCRIPCIÓN: {{ element.descriptionForum }}</p>
+        <p>CREADO POR: {{ element.user.username }}</p>
+        <div class="button-container-right" >
+          <button
+            mat-raised-button
+            color="primary" *ngIf="isADMIN() || isMOD()"
+            [routerLink]="['ediciones', element.idForum]" class="btn1"
+          >
+            <mat-icon>edit</mat-icon>
+          </button>
+          <button
+            mat-raised-button
+            color="primary" *ngIf="isADMIN()"
+            (click)="eliminar(element.idForum)" class="btn1"
+          >
+            <mat-icon>delete_sweep</mat-icon>
+          </button>
+        </div>
+
+
+        
+      </mat-card-content>
+    
+    </mat-card>
+<br/>
+<mat-paginator [pageSizeOptions]="[2, 10, 20]" showFirstLastButtons aria-label="Select page of periodic elements"></mat-paginator>
+
+  </div>
+  
+</div>

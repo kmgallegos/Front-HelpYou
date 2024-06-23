@@ -1,0 +1,49 @@
+<body class="login1111">
+   <div class="wrapper">
+     <div class="title">Registro</div>
+     <form [formGroup]="form" (ngSubmit)="aceptar()">
+      
+  
+
+       <div class="field">
+         <input matInput placeholder="usuario" formControlName="usernamee" name="username" required>
+         <label>usuario</label>
+       </div>
+       <div class="field">
+         <input matInput placeholder="nombres" formControlName="firstname" name="nombres" required>
+         <label>nombres</label>
+       </div>
+       <div class="field">
+         <input matInput placeholder="apellidos" formControlName="lastname" name="apellidos" required>
+         <label>apellidos</label>
+       </div>
+       <div class="field">
+         <input matInput placeholder="dni" formControlName="dni" name="dni" required>
+         <label>dni</label>
+       </div>
+       <div class="field">
+         <input matInput placeholder="correo" formControlName="email" name="correo" required>
+         <label>correo</label>
+       </div>
+       <div class="field">
+         <input matInput placeholder="número" formControlName="numero" name="numero" required>
+         <label>número</label>
+       </div>
+       <div class="field">
+         <input matInput placeholder="región" formControlName="region" name="region" required>
+         <label>región</label>
+       </div>
+       <div class="field">
+         <input type="password" matInput placeholder="password" formControlName="passwordd" name="password" required>
+         <label>password</label>
+       </div>
+       <div class="field">
+         <input type="submit" value="registrar">
+       </div>
+       <div class="signup-link">
+         eres miembro? <a [routerLink]="['/login']">LogIn </a><a >|</a> <a [routerLink]="['/landinghome']"> Inicio</a>
+       </div>
+     </form>
+   </div>
+ </body>
+ 

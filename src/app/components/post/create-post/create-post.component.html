@@ -1,0 +1,49 @@
+<!-- create-post.component.html -->
+<div class="title-container"><h1 class="title">Registro de Post</h1></div>
+<div class="container" style="text-align: center">
+  <form [formGroup]="form" (submit)="aceptar()" class="example-form">
+
+    <mat-form-field class="example-full-width" *ngIf="edicion">
+      <mat-label>Id</mat-label>
+      <input matInput placeholder="Id" formControlName="idPost" />
+    </mat-form-field>
+    <br/>
+
+    <mat-form-field>
+      <mat-label>Nombre del Post</mat-label>
+      <input matInput placeholder="Nombre del Post" formControlName="namePost">
+      <mat-error *ngIf="form.get('namePost')?.hasError('required')">El nombre del post es obligatorio.</mat-error>
+    </mat-form-field>
+    <br/>
+
+    <mat-form-field>
+      <mat-label>Descripción de la Consulta</mat-label>
+      <textarea matInput placeholder="Descripción de la Consulta" formControlName="queryDescription"></textarea>
+      <mat-error *ngIf="form.get('queryDescription')?.hasError('required')">La descripción de la consulta es obligatoria.</mat-error>
+    </mat-form-field>
+    <br/>
+
+    <mat-form-field>
+      <mat-label>Fecha del Post</mat-label>
+      <input matInput [matDatepicker]="picker" placeholder="Fecha del Post" formControlName="datePost">
+      <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+      <mat-datepicker #picker></mat-datepicker>
+      <mat-error *ngIf="form.get('datePost')?.hasError('required')">La fecha es obligatoria.</mat-error>
+    </mat-form-field>
+    <br/>
+
+    <mat-form-field>
+      <mat-label>Foro</mat-label>
+      <mat-select placeholder="Foro" formControlName="forum">
+        <mat-option *ngFor="let forum of forumsList" [value]="forum.idForum">
+          {{ forum.nameForum }}
+        </mat-option>
+      </mat-select>
+      <mat-error *ngIf="form.get('forum')?.hasError('required')">El foro es obligatorio.</mat-error>
+    </mat-form-field>
+    <br/>
+
+    <button mat-raised-button color="primary">Aceptar</button>
+
+  </form>
+</div>

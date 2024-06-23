@@ -1,0 +1,52 @@
+<div class="title-container"><h1 class="title">Registro de Roles</h1></div>
+<div class="container" style="text-align: center"> 
+  <form [formGroup]="form" (submit)="aceptar()" class="example-form">
+
+    <mat-form-field class="example-full-width"  *ngIf="edicion" >
+      <mat-label>codigo</mat-label>
+      <input matInput placeholder="Id" formControlName="Id" />      
+    </mat-form-field>
+    <br/>
+
+
+    
+
+    <br/>
+
+    <mat-form-field>
+        <mat-label> Tipo de rol </mat-label>
+        <mat-select placeholder="Inserte"formControlName="tipoRole">
+            <mat-option *ngFor="let m of tipoRole" [value]="m.value">
+                {{m.viewValue}}
+            </mat-option>
+        </mat-select>
+    </mat-form-field>
+
+    <br/>
+
+    <mat-form-field>
+        <input matInput placeholder="descripcion" formControlName="descripcion">
+        <mat-error *ngIf="form.get('direccion')?.hasError('required')">La direccion es obligatoria.</mat-error>  
+    </mat-form-field>
+
+    <br/>
+
+
+    <mat-form-field>
+    <mat-select formControlName="username">
+        <mat-option *ngFor="let c of listarUser" [value]="c.id">
+          {{ c.username }}
+        </mat-option>
+      </mat-select>
+      <mat-error *ngIf="form.get('verde')?.hasError('required')"
+        >El zapato es obligatoria.</mat-error>
+    </mat-form-field>
+
+    <br/>
+
+    
+
+    <button mat-raised-button color="primary"> Aceptar </button>
+
+  </form>
+</div>
